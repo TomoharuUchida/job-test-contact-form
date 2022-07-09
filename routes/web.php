@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// お問い合わせ入力ページ
+Route::get('/', 'App\Http\Controllers\CustomerController@index')->name('contact');
+
+// DB挿入
+Route::post('/process', 'CustomerController@process')->name('process');
+
+// 完了ページ
+Route::get('/complete', 'CustomerController@complete')->name('complete');
