@@ -23,3 +23,6 @@ Route::post('/process', 'App\Http\Controllers\CustomerController@process')->name
 
 // 完了ページ
 Route::get('/complete', 'App\Http\Controllers\CustomerController@complete')->name('complete');
+
+// 一覧表示ページ
+Route::get('/list', 'App\Http\Controllers\CustomerController@list')->name('list');

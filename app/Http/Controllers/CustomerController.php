@@ -72,6 +72,14 @@ class CustomerController extends Controller
         return view("customer.complete");
     }
 
+    public function list()
+    {
+        $customers = Customer::getAllOrderByUpdated_at();
+        return view('customer.list', [
+            'customers' => $customers
+        ]);
+    }
+
 
 
     /**
