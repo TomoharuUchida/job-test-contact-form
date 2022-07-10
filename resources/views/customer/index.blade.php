@@ -72,7 +72,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="POST">
+                        <form action="{{ route('process') }}" method="POST">
                             @csrf
                             <div class="form-group row">
                                 <p class="col-sm-4 col-form-label">お名前<span class="badge badge-danger ml-1">必須</span>
@@ -88,7 +88,7 @@
                                 </p>
                                 <div class="col-sm-8">
                                     <p class="modal-sex"></p>
-                                    <input class="modal-sex" type="hidden" name="gender" value="">
+                                    <input class="modal-sex" type="hidden" name="sex" value="">
                                 </div>
                             </div>
 
@@ -97,7 +97,7 @@
                                 </p>
                                 <div class="col-sm-8">
                                     <p class="modal-age"></p>
-                                    <input class="modal-age" type="hidden" name="email" value="">
+                                    <input class="modal-age" type="hidden" name="age" value="">
                                 </div>
                             </div>
 

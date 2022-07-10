@@ -7,16 +7,16 @@ $('.form-btn').click(function() {
   const inputContents = description.replace(/\r?\n/g, '<br />');
 
     // モーダル表示用の変数
-    let displaySex = sex
-    if (sex === 1) {
+    let displaySex
+    if (sex === '1') {
         displaySex = "男性"
-    } else if (sex === 2) {
+    } else if (sex === '2') {
         displaySex = "女性"
-    } else if(sex === 3) {
+    } else if(sex === '3') {
         displaySex ="どちらも選ばない"
     }
 
-    let displayAge = age == 60 ? `${age} 代以上` :`${age} 代`
+    let displayAge = age === '60' ? `${age} 代以上` :`${age} 代`
 
     // valueとtextで別の変数を使う
     $('.modal-name').text(name).val(name);

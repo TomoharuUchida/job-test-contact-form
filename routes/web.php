@@ -19,7 +19,7 @@ use App\Http\Controllers\CustomerController;
 Route::get('/', 'App\Http\Controllers\CustomerController@index')->name('contact');
 
 // DB挿入
-Route::post('/process', 'CustomerController@process')->name('process');
+Route::post('/process', 'App\Http\Controllers\CustomerController@process')->name('process');
 
 // 完了ページ
-Route::get('/complete', 'CustomerController@complete')->name('complete');
+Route::get('/complete', 'App\Http\Controllers\CustomerController@complete')->name('complete');

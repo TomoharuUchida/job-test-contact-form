@@ -23,9 +23,28 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function confirm()
+    public function process(Request $request)
     {
-        return view("customer.confirm");
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            'customer_name' => 'required',
+            'sex' => 'required',
+            'age' => 'required',
+            'checkbox' => 'required',
+            'description' => 'required',
+        ]);
+        // バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+                ->route('contact')
+                ->withInput()
+                ->withErrors($validator);
+        }
+        // create()は最初から用意されている関数
+        // 戻り値は挿入されたレコードの情報
+        $result = Customer::create($request->all());
+        // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('complete');
     }
 
     /**
