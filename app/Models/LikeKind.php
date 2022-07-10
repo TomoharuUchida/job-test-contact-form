@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class LikeKind extends Model
 {
     use HasFactory;
+
+    protected $guarded = [
+        'id',
+        'kind',
+        'created_at',
+        'updated_at',
+    ];
+
+    public static function getAllOrderByUpdated_at()
+    {
+        return self::orderBy('updated_at', 'asc')->get();
+    }
 }

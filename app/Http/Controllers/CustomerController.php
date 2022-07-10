@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Customer;
 use App\Models\Like;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -74,9 +75,15 @@ class CustomerController extends Controller
 
     public function list()
     {
-        $customers = Customer::getAllOrderByUpdated_at();
+        // likesテーブルを主として、customers,like_kindsテーブルを結合
+        $likes = DB::table('likes')
+            ->select('likes.id', 'likes.customer_id', 'likes.like', 'likes.created_at', 'likes.updated_at', 'customers.id as customerid', 'customers.customer_name', 'customers.sex', 'customers.age', 'customers.description', 'like_kinds.id as kindid', 'like_kinds.kind')
+            ->join('customers', 'likes.customer_id', '=', 'customers.id')
+            ->join('like_kinds', 'likes.like', '=', 'like_kinds.id')
+            ->get();
+
         return view('customer.list', [
-            'customers' => $customers
+            'likes' => $likes
         ]);
     }
 

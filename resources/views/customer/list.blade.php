@@ -27,32 +27,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($customers as $customer)
+                    @foreach ($likes as $like)
                         <tr>
-                            <th scope="row">{{ $customer->id }}</th>
-                            <td>{{ $customer->customer_name }}</td>
+                            <th scope="row">{{ $like->id }}</th>
+                            <td>{{ $like->customer_name }}</td>
                             <td>
                                 <?php
-                                if ($customer->sex === 1) {
+                                if ($like->sex === 1) {
                                     echo '男性';
-                                } elseif ($customer->sex === 2) {
+                                } elseif ($like->sex === 2) {
                                     echo '女性';
-                                } elseif ($customer->sex === 3) {
+                                } elseif ($like->sex === 3) {
                                     echo 'どちらも選ばない';
                                 }
                                 ?>
                             </td>
                             <td>
                                 <?php
-                                if ($customer->age === 60) {
-                                    echo "{$customer->age}代以上";
+                                if ($like->age === 60) {
+                                    echo "{$like->age}代以上";
                                 } else {
-                                    echo "{$customer->age}代";
+                                    echo "{$like->age}代";
                                 }
                                 ?>
                             </td>
-                            <td>あとで表示</td>
-                            <td>{{ $customer->description }}</td>
+                            <td>{{ $like->kind }}</td>
+                            <td>{{ $like->description }}</td>
                         </tr>
                     @endforeach
                 </tbody>

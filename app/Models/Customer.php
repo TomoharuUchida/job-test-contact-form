@@ -15,10 +15,16 @@ class Customer extends Model
         'updated_at',
     ];
 
-    public static function getAllOrderByUpdated_at()
+    // public static function getAllOrderByUpdated_at()
+    // {
+    //     return self::orderBy('updated_at', 'desc')->get();
+    // }
+
+    public function mylikes()
     {
-        return self::orderBy('updated_at', 'desc')->get();
+        return $this->hasMany(Like::class);
     }
+
 
 
     // public $primaryKey = 'id';
