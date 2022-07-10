@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Customer;
+use App\Models\Like;
 
 class CustomerController extends Controller
 {
@@ -40,9 +41,23 @@ class CustomerController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
+        // 好みのジャンルが入ったデータを配列形式に加工['1,2,3,']->[1,2,3]
+        $likes = explode(",", $request->input('checkbox')[0]);
+
         // create()は最初から用意されている関数
         // 戻り値は挿入されたレコードの情報
         $result = Customer::create($request->all());
+
+        //customersテーブルの主キーを取得
+        $customer_id = $result->id;
+
+        // likes テーブルに別々のレコードで保存
+        foreach ($likes as $like) {
+            $like_result = new Like();
+            $like_result->fill(['customer_id' => $customer_id, 'like' => $like]);
+            $like_result->save();
+        }
+
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('complete');
     }

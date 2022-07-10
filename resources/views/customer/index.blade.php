@@ -106,7 +106,7 @@
                                         class="badge badge-danger ml-1">必須</span></p>
                                 <div class="col-sm-8">
                                     <p class="modal-checkbox"></p>
-                                    <input class="modal-checkbox" type="hidden" name="checkbox" value="">
+                                    <input class="modal-checkbox" type="hidden" name="checkbox[]" value="">
                                 </div>
                             </div>
 

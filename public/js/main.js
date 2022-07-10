@@ -52,5 +52,6 @@ $('.form-btn').click(function() {
             return item
         }
     })
+    console.log(checkbox)
     $('.modal-checkbox').text(displayCheckbox);
 });
