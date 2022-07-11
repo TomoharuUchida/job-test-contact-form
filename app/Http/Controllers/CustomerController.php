@@ -142,6 +142,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+        $result = Like::find($id)->delete();
+        return redirect()->route('list');
         //
     }
 }

@@ -24,6 +24,7 @@
                         <th scope="col">年代</th>
                         <th scope="col">好きなジャンル</th>
                         <th scope="col">内容</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,13 @@
                             </td>
                             <td>{{ $like->kind }}</td>
                             <td>{{ $like->description }}</td>
+                            <td>
+                                <form action="{{ route('destroy', $like->id) }}" method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

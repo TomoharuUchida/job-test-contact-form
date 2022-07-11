@@ -26,3 +26,6 @@ Route::get('/complete', 'App\Http\Controllers\CustomerController@complete')->nam
 
 // 一覧表示ページ
 Route::get('/list', 'App\Http\Controllers\CustomerController@list')->name('list');
+
+// DB likesテーブルからの削除
+Route::delete('/destroy/{id}', 'App\Http\Controllers\CustomerController@destroy')->name('destroy');
