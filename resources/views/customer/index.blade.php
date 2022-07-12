@@ -27,7 +27,7 @@
         <div>
             <p>お名前</p>
             <div>
-                <input type="text" id="name" name="customer_name">
+                <input type="text" id="name" name="customer_name" value="{{ old('customer_name') }}">
             </div>
             <p>性別</p>
             <div>
@@ -64,7 +64,7 @@
             </div>
             <p>お問い合わせ内容</p>
             <div>
-                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                <textarea name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
             </div>
             <button type="button" class="btn btn-primary form-btn" data-toggle="modal"
                 data-target="#exampleModalCenter">入力内容を確認する</button>
