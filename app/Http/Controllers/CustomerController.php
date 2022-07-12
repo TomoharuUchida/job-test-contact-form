@@ -27,7 +27,7 @@ class CustomerController extends Controller
      */
     public function process(Request $request)
     {
-        // バリデーション
+        // バリデーション 要素名の変換はlang/jp/validationで
         $validator = Validator::make($request->all(), [
             'customer_name' => 'required',
             'sex' => 'required',
@@ -42,8 +42,8 @@ class CustomerController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-        // 好みのジャンルが入ったデータを配列形式に加工['1,2,3,']->[1,2,3]
-        $likes = explode(",", $request->input('checkbox')[0]);
+        // 好みのジャンルが入った文字列を配列に加工
+        $likes = explode(",", $request->input('checkbox'));
 
         // create()は最初から用意されている関数
         // 戻り値は挿入されたレコードの情報

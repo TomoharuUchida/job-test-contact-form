@@ -33,7 +33,7 @@ $('.form-btn').click(function() {
     const checkbox = [];
     $('input[name="foods"]:checked').each(function() {
         checkbox.push($(this).val());
-        $('.modal-checkbox').val(checkbox);
+        // $('.modal-checkbox').val(checkbox);
     });
 
     // モーダル表示用にもともとのvalueを変換した配列を作成
@@ -53,5 +53,7 @@ $('.form-btn').click(function() {
         }
     })
     console.log(checkbox)
+    // checkboxは文字列に変換してsubmit
+    $('.modal-checkbox').val(checkbox.join());
     $('.modal-checkbox').text(displayCheckbox);
 });

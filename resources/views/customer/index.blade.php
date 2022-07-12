@@ -11,6 +11,17 @@
 </head>
 
 <body>
+    {{-- バリデーションエラー --}}
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $message)
+                    <li>{{ $message }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div style="margin:15px;">
         <h2>お問い合わせフォーム</h2>
         <div>
@@ -40,7 +51,7 @@
                     <option value="60">60代以上</option>
                 </select>
             </div>
-            <p>好きなジャンル</p>
+            <p>好きなジャンル （複数選択可）</p>
             <div>
                 <input type="checkbox" id="japanese" name="foods" value="1">
                 <label for="japanese">和食</label>
@@ -107,7 +118,7 @@
                                         class="badge badge-danger ml-1">必須</span></p>
                                 <div class="col-sm-8">
                                     <p class="modal-checkbox"></p>
-                                    <input class="modal-checkbox" type="hidden" name="checkbox[]" value="">
+                                    <input class="modal-checkbox" type="hidden" name="checkbox" value="">
                                 </div>
                             </div>
 
