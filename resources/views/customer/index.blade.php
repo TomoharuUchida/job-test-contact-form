@@ -70,7 +70,12 @@
                 data-target="#exampleModalCenter">入力内容を確認する</button>
 
         </div>
-        <a href="{{ route('list') }}" class="btn btn-link" style="margin-top:5px; ">お問い合わせ一覧</a>
+        <div>
+            <a href="{{ route('list') }}" class="btn btn-link" style="margin-top:5px; ">お問い合わせ一覧(好きなジャンル基準)</a>
+        </div>
+        <div>
+            <a href="{{ route('customers_list') }}" class="btn btn-link" style="margin-top:5px; ">お問い合わせ一覧(お名前基準)</a>
+        </div>
 
         {{-- モーダル画面 --}}
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"

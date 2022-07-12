@@ -78,12 +78,20 @@ class CustomerController extends Controller
         // likesテーブルを主として、customers,like_kindsテーブルを結合
         $likes = DB::table('likes')
             ->select('likes.id', 'likes.customer_id', 'likes.like', 'likes.created_at', 'likes.updated_at', 'customers.id as customerid', 'customers.customer_name', 'customers.sex', 'customers.age', 'customers.description', 'like_kinds.id as kindid', 'like_kinds.kind')
-            ->join('customers', 'likes.customer_id', '=', 'customers.id')
+            ->leftJoin('customers', 'likes.customer_id', '=', 'customers.id')
             ->join('like_kinds', 'likes.like', '=', 'like_kinds.id')
             ->get();
 
         return view('customer.list', [
             'likes' => $likes
+        ]);
+    }
+
+    public function customers_list()
+    {
+        $customers = Customer::getAllOrderByUpdated_at();
+        return view('customer.customers_list', [
+            'customers' => $customers
         ]);
     }
 
@@ -144,6 +152,13 @@ class CustomerController extends Controller
     {
         $result = Like::find($id)->delete();
         return redirect()->route('list');
+        //
+    }
+
+    public function destroy_customer($id)
+    {
+        $result = Customer::find($id)->delete();
+        return redirect()->route('customers_list');
         //
     }
 }
