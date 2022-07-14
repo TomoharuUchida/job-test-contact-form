@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('like');
-            $table->timestamps();
+        Schema::table('likes', function (Blueprint $table) {
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('like')->references('id')->on('like_kinds');
         });
     }
 
@@ -28,6 +26,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::table('likes', function (Blueprint $table) {
+        });
     }
 };

@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        DB::table('like_kinds')->truncate();
+        // テーブルから全てのレコードを削除し、自動増分idをゼロにリセット
+        // 外部キー制約で参照されているとエラーが出る
+        // DB::table('like_kinds')->truncate();
 
         $this->call([
             LikeKindSeeder::class,
