@@ -20,7 +20,7 @@ class Customer extends Model
         return self::orderBy('updated_at', 'asc')->get();
     }
 
-    public function mylikes()
+    public function likes()
     {
         return $this->hasMany(Like::class);
     }

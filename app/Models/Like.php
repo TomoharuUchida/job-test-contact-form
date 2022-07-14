@@ -19,4 +19,9 @@ class Like extends Model
     {
         return self::orderBy('updated_at', 'desc')->get();
     }
+
+    public function kind()
+    {
+        return $this->belongsTo(LikeKind::class, 'like');
+    }
 }

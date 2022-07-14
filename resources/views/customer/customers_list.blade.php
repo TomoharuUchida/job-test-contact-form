@@ -22,6 +22,7 @@
                         <th scope="col">お名前</th>
                         <th scope="col">性別</th>
                         <th scope="col">年代</th>
+                        <th scope="col">好きなジャンル</th>
                         <th scope="col">内容</th>
                         <th></th>
                     </tr>
@@ -49,6 +50,19 @@
                                 } else {
                                     echo "{$customer->age}代";
                                 }
+                                ?>
+                            </td>
+                            <td>
+                                <?php
+                                $joined_like = null;
+                                foreach ($customer->likes as $key => $kind) {
+                                    if ($key === 0) {
+                                        $joined_like .= "{$kind->kind->kind}";
+                                    } else {
+                                        $joined_like .= ",{$kind->kind->kind}  ";
+                                    }
+                                }
+                                echo $joined_like;
                                 ?>
                             </td>
                             <td>{{ $customer->description }}</td>

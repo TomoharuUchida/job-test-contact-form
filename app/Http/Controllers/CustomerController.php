@@ -82,6 +82,7 @@ class CustomerController extends Controller
             ->join('like_kinds', 'likes.like', '=', 'like_kinds.id')
             ->get();
 
+
         return view('customer.list', [
             'likes' => $likes
         ]);
@@ -89,7 +90,12 @@ class CustomerController extends Controller
 
     public function customers_list()
     {
-        $customers = Customer::getAllOrderByUpdated_at();
+        // $customers = Customer::getAllOrderByUpdated_at();
+
+        $customers = Customer::with(['likes.kind'])->get();
+
+        // dd($customers);
+
         return view('customer.customers_list', [
             'customers' => $customers
         ]);
