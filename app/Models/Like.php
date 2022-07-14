@@ -9,14 +9,33 @@ class Like extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at',
+    public $primaryKey = 'id';
+
+    public $timestamps = true;
+
+    protected $fillable = [
+        'customer_id',
+        'like'
     ];
+
+    // protected $guarded = [
+    //     'id',
+    //     'created_at',
+    //     'updated_at',
+    // ];
 
     public static function getAllOrderByUpdated_at()
     {
         return self::orderBy('updated_at', 'desc')->get();
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function kind()
+    {
+        return $this->belongsTo(LikeKind::class, 'like');
     }
 }

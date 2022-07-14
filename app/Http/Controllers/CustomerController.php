@@ -75,12 +75,15 @@ class CustomerController extends Controller
 
     public function list()
     {
-        // likesテーブルを主として、customers,like_kindsテーブルを結合
-        $likes = DB::table('likes')
-            ->select('likes.id', 'likes.customer_id', 'likes.like', 'likes.created_at', 'likes.updated_at', 'customers.id as customerid', 'customers.customer_name', 'customers.sex', 'customers.age', 'customers.description', 'like_kinds.id as kindid', 'like_kinds.kind')
-            ->leftJoin('customers', 'likes.customer_id', '=', 'customers.id')
-            ->join('like_kinds', 'likes.like', '=', 'like_kinds.id')
-            ->get();
+        // クエリビルダ likesテーブルを主として、customers,like_kindsテーブルを結合
+        // $likes = DB::table('likes')
+        //     ->select('likes.id', 'likes.customer_id', 'likes.like', 'likes.created_at', 'likes.updated_at', 'customers.id as customerid', 'customers.customer_name', 'customers.sex', 'customers.age', 'customers.description', 'like_kinds.id as kindid', 'like_kinds.kind')
+        //     ->leftJoin('customers', 'likes.customer_id', '=', 'customers.id')
+        //     ->join('like_kinds', 'likes.like', '=', 'like_kinds.id')
+        //     ->get();
+
+        $likes = Like::with(['customer', 'kind'])->get();
+        // dd($likes);
 
         return view('customer.list', [
             'likes' => $likes
@@ -89,7 +92,12 @@ class CustomerController extends Controller
 
     public function customers_list()
     {
-        $customers = Customer::getAllOrderByUpdated_at();
+        // $customers = Customer::getAllOrderByUpdated_at();
+
+        $customers = Customer::with(['likes.kind'])->get();
+
+        // dd($customers);
+
         return view('customer.customers_list', [
             'customers' => $customers
         ]);
