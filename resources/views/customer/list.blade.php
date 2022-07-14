@@ -13,7 +13,6 @@
 <body>
     <div class="text-center">
         <h2>お問い合わせ一覧 <small class="text-muted">好きなジャンル基準</small></h2>
-        <p class="text-center">※"お名前"〜"内容"の欄が空欄のデータは、一覧（お名前基準）から削除済みのお問い合わせです。</p>
         <a href="{{ route('contact') }}" class="btn btn-link" style="margin-top:5px; ">入力フォームへ戻る</a>
         <div>
             <table class="table">
@@ -32,31 +31,31 @@
                     @foreach ($likes as $like)
                         <tr>
                             <th scope="row">{{ $like->id }}</th>
-                            <td>{{ $like->kind }}</td>
-                            <td>{{ $like->customer_name }}</td>
+                            <td>{{ $like->kind->kind }}</td>
+                            <td>{{ $like->customer->customer_name }}</td>
                             <td>
                                 <?php
-                                if ($like->sex === 1) {
+                                if ($like->customer->sex === 1) {
                                     echo '男性';
-                                } elseif ($like->sex === 2) {
+                                } elseif ($like->customer->sex === 2) {
                                     echo '女性';
-                                } elseif ($like->sex === 3) {
+                                } elseif ($like->customer->sex === 3) {
                                     echo 'どちらも選ばない';
                                 }
                                 ?>
                             </td>
                             <td>
                                 <?php
-                                if ($like->age === 60) {
-                                    echo "{$like->age}代以上";
-                                } elseif ($like->age === null) {
+                                if ($like->customer->age === 60) {
+                                    echo "{$like->customer->age}代以上";
+                                } elseif ($like->customer->age === null) {
                                     echo '';
                                 } else {
-                                    echo "{$like->age}代";
+                                    echo "{$like->customer->age}代";
                                 }
                                 ?>
                             </td>
-                            <td>{{ $like->description }}</td>
+                            <td>{{ $like->customer->description }}</td>
                             <td>
                                 <form action="{{ route('destroy', $like->id) }}" method="POST">
                                     @method('delete')
